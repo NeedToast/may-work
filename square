@@ -1,0 +1,39 @@
+import math
+
+# Initial distance from the sun (in astronomical units)
+r = 1
+
+# Time (in seconds)
+t = 0
+
+# Time step (in seconds)
+dt = 1
+
+# Time limit (in seconds)
+time_limit = 100
+
+# Calculate the acceleration of the planet
+def calculate_distance_acceleration(r, t):
+    # Use the inverse square law to calculate the acceleration
+    return -4 * math.pi**2 * r / (t**2)
+
+# Update the speed of the planet
+def new_value(r, t, acceleration):
+    # Use the Euler's method to update the speed
+    return r + acceleration * dt
+
+# Calculate the square of the planet's distance from the sun
+while t < time_limit:
+    # Calculate the acceleration of the planet
+    acceleration = calculate_distance_acceleration(r, t)
+
+    # Update the speed of the planet
+    r = new_value(r, t, acceleration)
+
+    # Update the time
+    t += dt
+
+# Calculate the square of the planet's distance from the sun
+square_of_distance = r**2
+
+print("The square of the planet's distance from the sun is:", square_of_distance)
